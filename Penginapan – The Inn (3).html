@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Penginapan – The Inn</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;1,7..72,400&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#e9e4f5;--surface:#fff;--ink:#231a3a;--muted:#5d5578;--line:#cbc0e6;--glow:#7a4be0;--btn:#3b2670;--btn-ink:#fff;
+--multi:#f6d36b;--idiom:#f4a9a0;--context:#9fc9ee;--emotion:#c9b3ee;--hl-ink:#1a1230;
+--title:"Creepster","Chiller",Georgia,serif;--serif:"Literata",Georgia,serif;--sans:"DM Sans",system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0f1c;--surface:#171a2e;--ink:#ece9f8;--muted:#a9a3c6;--line:#383160;--glow:#9bffb8;--btn:#9bffb8;--btn-ink:#0c1a14;
+--multi:#e8b94a;--idiom:#ff7f8f;--context:#6cb8ff;--emotion:#b891ff}}
+:root[data-theme="dark"]{--bg:#0c0f1c;--surface:#171a2e;--ink:#ece9f8;--muted:#a9a3c6;--line:#383160;--glow:#9bffb8;--btn:#9bffb8;--btn-ink:#0c1a14;--multi:#e8b94a;--idiom:#ff7f8f;--context:#6cb8ff;--emotion:#b891ff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+.hero{position:relative;overflow:hidden;min-height:360px;background:linear-gradient(#060814,#1a1138 65%,#34204f);color:#f4f0ff;border-radius:0 0 28px 28px}
+.hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 10% 20%,#fff,transparent),radial-gradient(1px 1px at 30% 60%,#fff,transparent),radial-gradient(1.5px 1.5px at 55% 15%,#fff,transparent),radial-gradient(1px 1px at 70% 45%,#fff,transparent),radial-gradient(1.5px 1.5px at 88% 70%,#fff,transparent),radial-gradient(1px 1px at 20% 85%,#fff,transparent),radial-gradient(1px 1px at 45% 38%,#fff,transparent);animation:twinkle 4s ease-in-out infinite}
+.moon{position:absolute;top:30px;right:12%;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#fffbe8,#f2e6ae 60%,#d4c274);box-shadow:0 0 70px 22px rgba(255,244,190,.3);animation:pulse 6s ease-in-out infinite}
+.inn{position:absolute;right:4%;bottom:0;width:min(440px,70%);height:auto}
+.win{animation:flicker 3.2s steps(1) infinite}
+.gh{position:absolute;font-size:2rem;opacity:.85;filter:drop-shadow(0 0 10px #aff);animation:float 7s ease-in-out infinite;pointer-events:none}
+.bat{position:absolute;left:-60px;font-size:1.6rem;animation:fly 16s linear infinite;pointer-events:none}
+.fog{position:absolute;left:-50%;bottom:-20px;width:200%;height:110px;background:radial-gradient(ellipse at center,rgba(210,210,255,.22),transparent 70%);animation:drift 18s ease-in-out infinite alternate}
+.hero .wrap{position:relative;padding-top:96px;padding-bottom:70px}
+h1{font-family:var(--title);font-weight:400;font-size:clamp(2.6rem,9vw,5rem);line-height:1.05;letter-spacing:.03em;margin:0;max-width:11ch;color:#fff;text-shadow:0 0 14px #9bffb8,0 0 34px #7a4be0;animation:glowflick 5s infinite}
+h2{font-family:var(--serif);font-style:italic;font-size:1.7rem;margin:0 0 8px}
+h2 i{font-style:normal;margin-right:8px}
+section{padding:34px 0}
+.sub{color:var(--muted);margin:0 0 18px;max-width:62ch}
+.scenes{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:0;padding:0;list-style:none}
+.scenes li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px;font-size:.92rem;transition:transform .2s,box-shadow .2s}
+.scenes li:hover{transform:translateY(-4px) rotate(-1deg);box-shadow:0 8px 22px -6px var(--glow)}
+.scenes b{display:block;font-size:2rem;line-height:1.2}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 20px;padding:0;list-style:none}
+.legend li{display:flex;align-items:center;gap:8px;font-size:.88rem;padding:4px 12px 4px 6px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.dot{width:14px;height:14px;border-radius:50%;display:inline-block}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.col{position:relative;padding:22px 24px;border:1px solid var(--line);border-radius:14px;background:var(--surface);box-shadow:0 0 28px -10px var(--glow)}
+.col svg.web{position:absolute;top:0;right:0;width:64px;height:64px;opacity:.5;pointer-events:none;color:var(--muted)}
+.col h3{font-size:.95rem;margin:0 0 10px;font-weight:700}
+.col h3 span{font-weight:400;color:var(--muted)}
+.story{font-family:var(--serif);font-size:1.05rem;line-height:1.85;margin:0 0 1em;max-width:60ch}
+.story:last-child{margin:0}
+.hl{border:0;font:inherit;color:var(--hl-ink);padding:1px 4px;margin:0 -1px;border-radius:4px;cursor:help;text-align:inherit;animation:hlpulse 3s ease-in-out infinite}
+.hl[data-cat="multi"]{background:var(--multi)}.hl[data-cat="idiom"]{background:var(--idiom)}
+.hl[data-cat="context"]{background:var(--context)}.hl[data-cat="emotion"]{background:var(--emotion)}
+.hl.link,.hl.active{box-shadow:0 0 0 2px var(--ink),0 0 14px 2px var(--glow);animation:none}
+.hl:focus-visible,.btn:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+.qa,.concl{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 0 28px -10px var(--glow)}
+.q{font-family:var(--serif);font-size:1.3rem;margin:0 0 16px}
+.btn{font:inherit;font-weight:700;padding:10px 20px;border-radius:999px;border:0;background:var(--btn);color:var(--btn-ink);cursor:pointer;box-shadow:0 0 16px -2px var(--glow)}
+#answer{margin-top:16px;padding-top:16px;border-top:1px dashed var(--line);animation:rise .5s ease-out}
+#answer[hidden]{display:none}
+#answer p{margin:0;max-width:62ch}
+.final{font-family:var(--serif);font-size:1rem;line-height:1.75;max-width:70ch;margin:0}
+footer{padding:28px 0 48px;color:var(--muted);font-size:.85rem;text-align:center}
+#tip{position:fixed;z-index:50;display:none;width:min(440px,calc(100vw - 24px));background:var(--surface);color:var(--ink);border:1px solid var(--glow);border-radius:12px;padding:16px 18px;box-shadow:0 0 30px -4px var(--glow),0 10px 30px rgba(0,0,0,.35);pointer-events:none;animation:rise .2s ease-out}
+.dhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;margin-bottom:4px}
+.dhead h3{font-family:var(--serif);font-size:1.2rem;margin:0}
+.tag{font-size:.8rem;padding:2px 10px;border-radius:999px;color:var(--hl-ink)}
+.tag[data-cat="multi"]{background:var(--multi)}.tag[data-cat="idiom"]{background:var(--idiom)}.tag[data-cat="context"]{background:var(--context)}.tag[data-cat="emotion"]{background:var(--emotion)}
+.kind{color:var(--muted);font-size:.9rem;margin:0 0 10px}
+.facts{display:grid;gap:10px}
+.fact{border-left:3px solid var(--glow);padding-left:12px}
+.fact h4{margin:0 0 4px;font-size:.92rem}.fact p{margin:0 0 6px;font-size:.95rem}.fact p:last-child{margin:0}.fact em{font-family:var(--serif)}
+#music{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:40;font:inherit;font-weight:700;font-size:.9rem;padding:10px 16px;border-radius:999px;border:1px solid var(--glow);background:var(--surface);color:var(--ink);cursor:pointer;box-shadow:0 0 18px -2px var(--glow)}
+#music[aria-pressed="true"]{background:var(--btn);color:var(--btn-ink)}
+#music:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+@keyframes twinkle{50%{opacity:.45}}
+@keyframes pulse{50%{box-shadow:0 0 90px 34px rgba(255,244,190,.4)}}
+@keyframes flicker{0%,100%{opacity:1}8%{opacity:.35}12%{opacity:1}55%{opacity:.8}58%{opacity:.2}62%{opacity:1}}
+@keyframes float{50%{transform:translateY(-22px) rotate(6deg)}}
+@keyframes fly{0%{transform:translate(0,0)}25%{transform:translate(28vw,-30px)}50%{transform:translate(56vw,10px)}75%{transform:translate(84vw,-24px)}100%{transform:translate(115vw,0)}}
+@keyframes drift{to{transform:translateX(18%)}}
+@keyframes glowflick{0%,100%,46%,50%,90%{opacity:1}48%,92%{opacity:.7}}
+@keyframes hlpulse{50%{box-shadow:0 0 10px 1px var(--glow)}}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}}
+@media (max-width:760px){.pair,.scenes{grid-template-columns:1fr 1fr}.pair{grid-template-columns:1fr}.hero .wrap{padding-top:70px}.inn{opacity:.6}}
+@media (prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="web" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="1"><path d="M64 0 0 0M64 0 64 64M64 0 22 42M64 0 42 22M64 0 4 28M64 0 36 60"/><path d="M50 0Q54 10 64 14M34 0Q42 20 64 28M18 0Q30 32 64 44"/></g></symbol></svg>
+
+<div class="hero">
+  <div class="moon"></div>
+  <span class="gh" style="top:40px;left:8%">👻</span>
+  <span class="gh" style="top:150px;left:40%;animation-delay:-3s;font-size:1.4rem">👻</span>
+  <span class="gh" style="top:60px;left:58%;animation-delay:-5s;font-size:1.2rem">🕯️</span>
+  <span class="bat" style="top:30px">🦇</span>
+  <span class="bat" style="top:120px;animation-delay:-8s;font-size:1.2rem">🦇</span>
+  <svg class="inn" viewBox="0 0 440 230" aria-hidden="true">
+    <path d="M0 230V190Q120 150 230 175T440 160V230Z" fill="#0b0a18"/>
+    <path d="M60 175C70 140 62 100 72 70M72 100 50 80M70 120 96 98M72 82 92 64" stroke="#0b0a18" stroke-width="5" fill="none" stroke-linecap="round"/>
+    <rect x="190" y="105" width="190" height="80" fill="#12101f"/><path d="M178 108 285 52 392 108Z" fill="#0b0a18"/><rect x="340" y="56" width="16" height="36" fill="#0b0a18"/>
+    <rect class="win" x="214" y="128" width="26" height="30" fill="#ffd36b"/><rect x="262" y="128" width="26" height="30" fill="#2a2440"/><rect x="310" y="128" width="26" height="30" fill="#2a2440"/>
+    <rect x="352" y="140" width="18" height="45" rx="9" fill="#0b0a18"/>
+    <path d="M150 186l-4-18 8 6 4-12 4 12 8-6-4 18Z" fill="#0b0a18"/><circle cx="154" cy="162" r="1.6" fill="#9bffb8"/>
+  </svg>
+  <div class="fog"></div>
+  <div class="wrap"><h1>Penginapan – The Inn</h1></div>
+</div>
+
+<div class="wrap">
+<section id="story">
+  <h2><i>📜</i>The story and its translation</h2>
+  <p class="sub">Highlighted expressions are the problem spots. Hover over any highlight, in either language, to see what it really means, what the machine said, and why it went wrong.</p>
+  <ul class="legend" aria-label="Error types">
+    <li><span class="dot" style="background:var(--multi)"></span>Multiple meanings</li>
+    <li><span class="dot" style="background:var(--idiom)"></span>Idiom</li>
+    <li><span class="dot" style="background:var(--context)"></span>Missing context</li>
+    <li><span class="dot" style="background:var(--emotion)"></span>Lost emotion</li>
+  </ul>
+  <div class="pair">
+    <div class="col"><svg class="web" aria-hidden="true"><use href="#web"/></svg>
+      <h3>🏮 Original <span>· Bahasa Indonesia</span></h3>
+      <p class="story" lang="id">Suatu sore, Budi datang ke sebuah penginapan yang terletak di desa terpencil tempat ia ditugaskan selama seminggu kedepan. Pak Andi sang pemilik penginapan mengantarnya ke kamar sambil memperingatkannya agar tidak keluar kamar malam-malam karena penginapan tersebut sering diganggu makhluk halus, namun Budi tertawa dan berkata, “Saya <button class="hl" data-id="mah" data-cat="emotion">mah</button> nggak percaya begituan, Pak! Daripada hantu, saya lebih takut lihat saldo rekening bank saya di akhir bulan.” Pak Andi pun ikut tertawa lalu berkata, “Pak Lurah bilang besok pagi ada <button class="hl" data-id="apel" data-cat="multi">apel</button> jam 8:00 di halaman, ikut ya.” Budi langsung bertanya, “Maksudnya bagi-bagi apel gratis, Pak?” Pak Andi hanya tersenyum sambil menggelengkan kepala.</p>
+      <p class="story" lang="id">Setelah mereka menyusuri lorong-lorong yang kosong dan tiba di depan kamar, seketika Budi bercanda, “Malam ini rame ya Pak, kayak di kuburan, hahaha!” Pak Andi tertawa dan menjawab, “<button class="hl" data-id="rame" data-cat="idiom">Rame dari Hong Kong</button>. Sepi itu namanya. Ya sudah, segera masuk kamar dan istirahatlah.” Lalu Budi pun masuk ke kamar dan tertidur, tetapi sekitar pukul 3 pagi ia terbangun karena mendengar suara-suara aneh dari luar kamarnya. Saat ia keluar untuk memeriksa keadaan, disitu ia melihat Pak Andi berdiri di samping seekor kucing yang sudah mati berlumuran darah. Dengan kaki yang tidak menapak lantai dan mulut yang dilumuri darah, Pak Andi perlahan menoleh kearahnya, sambil tersenyum lebar ia berkata, “<button class="hl" data-id="batu" data-cat="idiom">Kepala batu</button> juga kamu ya, kan sudah dibilang jangan keluar kamar.”</p>
+    </div>
+    <div class="col"><svg class="web" aria-hidden="true"><use href="#web"/></svg>
+      <h3>👻 DeepL <span>· English</span></h3>
+      <p class="story">One afternoon, Budi arrived at an inn located in a remote village where he had been assigned to work for the next week. Mr. Andi, the inn’s owner, showed him to his room while warning him not to go out at night because the inn was often haunted by spirits. However, Budi laughed and said, “<button class="hl" data-id="mah" data-cat="emotion">I don’t believe in that sort of thing, sir!</button> I’m more afraid of seeing my bank balance at the end of the month than I am of ghosts.” Mr. Andi laughed too and said, “The village chief said there’s an ‘<button class="hl" data-id="apel" data-cat="multi">apple</button>’ at 8:00 a.m. tomorrow in the courtyard—be sure to come.” Budi immediately asked, “You mean they’re handing out free apples, sir?” Mr. Andi just smiled and shook his head.</p>
+      <p class="story">After they walked through the empty hallways and arrived in front of the room, Budi immediately joked, “It’s crowded tonight, isn’t it, Sir? Just like a cemetery, hahaha!” Mr. Andi laughed and replied, “<button class="hl" data-id="rame" data-cat="idiom">Crowded from Hong Kong.</button> That’s what you call quiet. All right, go inside your room and get some rest.” Then Budi went into his room and fell asleep, but around 3 a.m. he woke up because he heard strange noises coming from outside his room. When he went out to check what was going on, he saw Mr. Andi standing next to a dead cat covered in blood. With his feet not touching the floor and his mouth smeared with blood, Mr. Andi slowly turned toward him. With a broad smile, he said, “You’re such a <button class="hl" data-id="batu" data-cat="idiom">blockhead</button>—I already told you not to leave the room.”</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><i>🕯️</i>The story in four scenes</h2>
+  <ul class="scenes">
+    <li><b>🌆</b>Budi arrives at a remote village inn for a week of work.</li>
+    <li><b>🍎</b>Pak Andi mentions an <em>apel</em>. Budi hears free fruit.</li>
+    <li><b>🚪</b>“Don’t leave your room at night.” Budi laughs it off.</li>
+    <li><b>🐈‍⬛</b>3 a.m.: a bloody cat, and a smiling Pak Andi whose feet don’t touch the floor.</li>
+  </ul>
+</section>
+
+<section id="between">
+  <h2><i>🔦</i>Read between the lines</h2>
+  <div class="qa">
+    <p class="q"><strong>Question:</strong> Was the village chief going to give out free apples at 8:00 a.m.?</p>
+    <button class="btn" id="ansBtn" aria-expanded="false" aria-controls="answer">🕯️ Show answer</button>
+    <div id="answer" hidden>
+      <p><strong>No.</strong> The village chief wasn’t going to give out free apples. Pak Andi was talking about <em>apel pagi</em>, which means morning assembly or roll call. Budi misunderstood the word <em>apel</em> as the fruit.</p>
+    </div>
+  </div>
+</section>
+
+<section id="conclusion">
+  <h2><i>🕸️</i>Conclusion</h2>
+  <div class="concl"><p class="final">By comparing the translations, we can see that the DeepL can translate most of the sentences correctly, but it sometimes translates individual words too literally and it still struggles with idioms, double meaning words and cultural expressions. However, a human reader, especially those who understands the language can recognize the meaning behind the expressions (such as, ‘kepala batu’, ‘apel’, and ‘Rame dari Hong Kong’) to get the jokes and sarcasm to be able to understand and enjoy the story. Therefore, understanding a language is not only about translating words by words and a translation that seems correct might not carry its original context, idioms, and tones.</p></div>
+</section>
+<button id="music" aria-pressed="false">🎵 Spooky music: off</button>
+<footer>🦇 An experiment in AI translation · Indonesian to English · Translated with DeepL 🦇</footer>
+</div>
+
+<script>
+let ac,master,timer,musicOn=false;
+function startAudio(){
+  ac=new (window.AudioContext||window.webkitAudioContext)();
+  master=ac.createGain();master.gain.value=0;master.connect(ac.destination);
+  const dl=ac.createDelay();dl.delayTime.value=.28;const fb=ac.createGain();fb.gain.value=.15;dl.connect(fb);fb.connect(dl);const wet=ac.createGain();wet.gain.value=.25;dl.connect(wet);wet.connect(master);
+  const bus=ac.createGain();bus.connect(master);bus.connect(dl);
+  const lp=ac.createBiquadFilter();lp.type='lowpass';lp.frequency.value=420;lp.Q.value=4;lp.connect(bus);
+  const lfo=ac.createOscillator();lfo.frequency.value=.07;const lg=ac.createGain();lg.gain.value=250;lfo.connect(lg);lg.connect(lp.frequency);lfo.start();
+  [[55,'sawtooth',.18],[55.4,'sawtooth',.16],[58.3,'sawtooth',.1],[77.8,'triangle',.14],[110,'sine',.08],[116.5,'sine',.06]].forEach(([f,t,g])=>{const o=ac.createOscillator();o.type=t;o.frequency.value=f;const og=ac.createGain();og.gain.value=g;o.connect(og);og.connect(lp);o.start();});
+  const nb=ac.createBuffer(1,ac.sampleRate*2,ac.sampleRate),d=nb.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=Math.random()*2-1;
+  const ns=ac.createBufferSource();ns.buffer=nb;ns.loop=true;const bp=ac.createBiquadFilter();bp.type='bandpass';bp.frequency.value=600;bp.Q.value=1.5;
+  const ng=ac.createGain();ng.gain.value=.03;ns.connect(bp);bp.connect(ng);ng.connect(bus);ns.start();
+  const l2=ac.createOscillator();l2.frequency.value=.11;const l2g=ac.createGain();l2g.gain.value=300;l2.connect(l2g);l2g.connect(bp.frequency);l2.start();
+  const notes=[220,233.08,261.63,277.18,329.63,349.23];
+  const N={A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5s:830.61,A5:880};
+  const mel=[['E5',1],['C5',1],['A4',1],['C5',1],['E5',1],['A5',1],['G5s',1],['E5',1],['B4',1],['E5',3],['F5',1],['D5',1],['B4',1],['D5',1],['F5',1],['A5',1],['G5s',1],['E5',1],['C5',1],['A4',3],[null,3]];
+  let si=0;
+  window.song=function(){
+    if(!musicOn)return;
+    const [n,b]=mel[si%mel.length];si++;
+    if(n&&Math.random()>.08){
+      let f=N[n]*(1+(Math.random()-.5)*.006);if(Math.random()<.08)f*=1.05946;
+      const t=ac.currentTime;
+      [[f,.11,2.6],[f*2.76,.035,1.2],[f*5.4,.012,.5]].forEach(([fr,v,d])=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=fr;const g=ac.createGain();
+        g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+        o.connect(g);g.connect(bus);o.start(t);o.stop(t+d+.1);});
+    }
+    timer=setTimeout(window.song,b*680*(1+(Math.random()-.5)*.12));
+  };
+  window.bell=function(){
+    if(!musicOn)return;
+    const f=notes[Math.floor(Math.random()*notes.length)]*(Math.random()<.35?2:1)*(1+(Math.random()-.5)*.04),t=ac.currentTime;
+    [[f,.09],[f*2.76,.03],[f*1.05946,.03]].forEach(([fr,v])=>{const o=ac.createOscillator();o.type='sine';o.frequency.value=fr;const g=ac.createGain();
+      g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+4);
+      o.connect(g);g.connect(bus);o.start(t);o.stop(t+4.2);});
+    if(Math.random()<.25){const o=ac.createOscillator(),g=ac.createGain();o.frequency.setValueAtTime(70,t+.5);o.frequency.exponentialRampToValueAtTime(30,t+1.2);g.gain.setValueAtTime(0,t+.5);g.gain.linearRampToValueAtTime(.35,t+.55);g.gain.exponentialRampToValueAtTime(.0001,t+1.3);o.connect(g);g.connect(bus);o.start(t+.5);o.stop(t+1.4);}
+    timer=setTimeout(window.bell,2500+Math.random()*5000);
+  };
+}
+const mbtn=document.getElementById('music');
+mbtn.onclick=e=>{
+  e.stopPropagation();
+  if(!ac)startAudio();
+  musicOn=!musicOn;clearTimeout(timer);
+  mbtn.setAttribute('aria-pressed',musicOn);
+  mbtn.textContent=musicOn?'🔊 Spooky music: on':'🎵 Spooky music: off';
+  if(musicOn){ac.resume();master.gain.setTargetAtTime(.35,ac.currentTime,.5);window.song();}
+  else{master.gain.setTargetAtTime(0,ac.currentTime,.4);setTimeout(()=>{if(!musicOn)ac.suspend();},1800);}
+};
+const CATS={multi:"Multiple meanings",idiom:"Idiom",context:"Missing context",emotion:"Lost emotion"};
+const D={
+ apel:{term:"apel",kind:"Multiple meanings (word with more than one sense)",cats:["multi","context"],
+  real:["In this context it means <em>apel pagi</em>, “morning assembly” or “roll call.”"],said:["“apple”"],
+  why:["The machine chose the wrong meaning of the word, the fruit instead of the morning assembly, despite the village chief and courtyard context."]},
+ rame:{term:"Rame dari Hong Kong",kind:"Idiom (sarcasm)",cats:["idiom"],
+  real:["A colloquial, sarcastic expression meaning “It’s not crowded at all” or “What crowd? It’s completely quiet.”","The pattern “…dari Hong Kong” is an Indonesian way to show strong disbelief or denial, or to point out something is completely unrealistic. It is similar to English “No way!”, “As if!” or “My foot!”"],
+  said:["“Crowded from Hong Kong.”"],
+  why:["The machine missed the sarcastic tone of this cultural expression and translated the words too literally, so it sounds as if a crowd of people came from Hong Kong."]},
+ batu:{term:"kepala batu",kind:"Idiom",cats:["idiom"],
+  real:["“A stubborn person who refuses to listen.”","Literal translation: “stone head.”"],said:["“blockhead”"],
+  why:["“Blockhead” often suggests someone is stupid. But <em>kepala batu</em> here is about Budi being stubborn for ignoring the warning, not necessarily about being stupid."]},
+ mah:{term:"mah",kind:"Casual emphasis particle",cats:["emotion"],
+  real:["A particle that adds casual emphasis, similar to “As for me, …” It expresses the speaker’s personal stance with confidence or casual indifference.","Budi isn’t just saying he doesn’t believe it. He is contrasting himself with others: “Others might believe it, but as for me, I don’t buy it.”"],
+  said:["The word wasn’t translated directly. The sentence became <em>Saya nggak percaya begituan</em>: “I don’t believe in that sort of thing.”"],
+  why:["The basic meaning is correct, but the casual, confident tone is lost in English because the machine drops the word completely."]}
+};
+const tip=document.createElement('div');tip.id='tip';tip.setAttribute('role','tooltip');document.body.appendChild(tip);
+let cur=null;const paras=a=>a.map(t=>`<p>${t}</p>`).join('');
+function openTip(b){
+  const d=D[b.dataset.id];cur=b;
+  document.querySelectorAll('.hl').forEach(x=>x.classList.toggle('active',x.dataset.id===b.dataset.id));
+  tip.innerHTML=`<div class="dhead"><h3 lang="id">${d.term}</h3>${d.cats.map(c=>`<span class="tag" data-cat="${c}">${CATS[c]}</span>`).join('')}</div><p class="kind">${d.kind}</p><div class="facts"><div class="fact"><h4>(a) What it really means</h4>${paras(d.real)}</div><div class="fact"><h4>(b) What the machine said</h4>${paras(d.said)}</div><div class="fact"><h4>(c) Why the machine got it wrong</h4>${paras(d.why)}</div></div>`;
+  tip.style.display='block';
+  const r=b.getBoundingClientRect(),w=tip.offsetWidth,h=tip.offsetHeight;
+  let left=Math.min(Math.max(12,r.left+r.width/2-w/2),innerWidth-w-12),top=r.bottom+8;
+  if(top+h>innerHeight-12&&r.top-h-8>12)top=r.top-h-8;
+  tip.style.left=left+'px';tip.style.top=Math.max(12,top)+'px';
+}
+function closeTip(){tip.style.display='none';cur=null;document.querySelectorAll('.hl').forEach(x=>x.classList.remove('active'));}
+document.querySelectorAll('.hl').forEach(b=>{
+  const link=on=>document.querySelectorAll(`.hl[data-id="${b.dataset.id}"]`).forEach(x=>x.classList.toggle('link',on));
+  b.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){openTip(b);link(true);}});
+  b.addEventListener('pointerleave',e=>{if(e.pointerType==='mouse'){closeTip();link(false);}});
+  b.addEventListener('focus',()=>{openTip(b);link(true);});
+  b.addEventListener('blur',()=>{closeTip();link(false);});
+  b.addEventListener('click',e=>{if(e.pointerType==='mouse')return;e.stopPropagation();cur===b&&tip.style.display==='block'?closeTip():openTip(b);});
+});
+document.addEventListener('click',closeTip);
+addEventListener('scroll',closeTip,{passive:true});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeTip();});
+const btn=document.getElementById('ansBtn'),ans=document.getElementById('answer');
+btn.onclick=()=>{const open=ans.hidden;ans.hidden=!open;btn.setAttribute('aria-expanded',open);btn.textContent=open?'🌫️ Hide answer':'🕯️ Show answer';};
+</script>
+</body>
+</html>
